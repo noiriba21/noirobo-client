@@ -6,30 +6,31 @@
 @plugin "daisyui/theme" {
   name: "noirobo";
   default: true;
-  color-scheme: light;
-  --color-base-100: #ffffff;
-  --color-base-200: #f4f8ff;
-  --color-base-300: #e2eaf7;
-  --color-base-content: #0a1128;
-  --color-primary: #0b3d91;
-  --color-primary-content: #ffffff;
-  --color-secondary: #00b4d8;
-  --color-secondary-content: #04202b;
-  --color-accent: #00b4d8;
-  --color-accent-content: #04202b;
-  --color-neutral: #0a1128;
-  --color-neutral-content: #ffffff;
-  --color-info: #00b4d8;
-  --color-info-content: #04202b;
-  --color-success: #16a34a;
-  --color-success-content: #ffffff;
+  prefersdark: true;
+  color-scheme: dark;
+  --color-base-100: #0a0c0f;
+  --color-base-200: #11141a;
+  --color-base-300: #1c2028;
+  --color-base-content: #ece9e4;
+  --color-primary: #ff6a1a;
+  --color-primary-content: #140a03;
+  --color-secondary: #9aa4b2;
+  --color-secondary-content: #0a0c0f;
+  --color-accent: #4c8dff;
+  --color-accent-content: #ffffff;
+  --color-neutral: #060709;
+  --color-neutral-content: #c9ced6;
+  --color-info: #4c8dff;
+  --color-info-content: #ffffff;
+  --color-success: #22c55e;
+  --color-success-content: #04140a;
   --color-warning: #f59e0b;
-  --color-warning-content: #1f1300;
-  --color-error: #dc2626;
+  --color-warning-content: #1a1000;
+  --color-error: #ef4444;
   --color-error-content: #ffffff;
-  --radius-selector: 1rem;
-  --radius-field: 0.75rem;
-  --radius-box: 1rem;
+  --radius-selector: 999px;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
 }
 
 html {
@@ -37,14 +38,17 @@ html {
 }
 
 body {
-  font-family: var(--font-manrope), system-ui, sans-serif;
-  background: #ffffff;
-  color: #0a1128;
+  font-family: var(--font-body), system-ui, sans-serif;
+  background: radial-gradient(ellipse at top, #11151b 0%, #0a0c0f 55%) fixed;
+  color: #ece9e4;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-sora), system-ui, sans-serif;
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
 }
 
 .container-x {
@@ -61,10 +65,236 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #0b3d91;
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: 2.4rem;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #f4f1ec;
 }
 @media (min-width: 768px) {
-  .section-title { font-size: 2.5rem; }
+  .section-title { font-size: 3.4rem; }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #ff6a1a;
+}
+.eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: #ff6a1a;
+}
+
+.accent-line {
+  display: block;
+  width: 3.5rem;
+  height: 1px;
+  background: #ff6a1a;
+}
+
+.btn {
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  text-transform: none;
+}
+.btn-primary {
+  border: 1px solid #ff6a1a;
+}
+.btn-primary:hover {
+  background: #ff7f3a;
+  border-color: #ff7f3a;
+}
+.btn-outline-light {
+  border: 1px solid rgba(236, 233, 228, 0.35);
+  color: #ece9e4;
+  background: transparent;
+}
+.btn-outline-light:hover {
+  border-color: #ff6a1a;
+  color: #ff6a1a;
+}
+
+.card-dark {
+  background: linear-gradient(180deg, #12161c 0%, #0e1116 100%);
+  border: 1px solid #1c2028;
+  border-radius: 0.9rem;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.card-dark:hover {
+  border-color: rgba(255, 106, 26, 0.7);
+  transform: translateY(-4px);
+}
+/* ================= TYPOGRAPHY SYSTEM ================= */
+:root {
+  --font-serif: var(--font-heading), Georgia, serif;
+  --font-sans: var(--font-body), system-ui, sans-serif;
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* ---------- Headings (Instrument Serif) ---------- */
+.t-display,
+.t-h1,
+.t-h2,
+.section-title,
+.t-h3,
+.t-h4,
+.t-stat {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: #f4f1ec;
+  text-wrap: balance;
+}
+
+.t-display {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+.t-h1 {
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+.t-h2,
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+.t-h3 {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.t-h4 {
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
+.t-stat {
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* heading-এর ভেতরে <em> মানে কমলা ও বাঁকা */
+.t-display em,
+.t-h1 em,
+.t-h2 em,
+.section-title em,
+.t-h3 em {
+  font-style: italic;
+  color: #ff6a1a;
+}
+
+/* ---------- Body (Inter) ---------- */
+.t-lead,
+.t-body,
+.t-small,
+.t-caption {
+  font-family: var(--font-sans);
+  text-wrap: pretty;
+}
+.t-lead {
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.7;
+  color: rgba(236, 233, 228, 0.75);
+}
+.t-body {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(236, 233, 228, 0.85);
+}
+.t-small {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: rgba(236, 233, 228, 0.7);
+}
+.t-caption {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: rgba(236, 233, 228, 0.55);
+}
+
+/* ---------- Label, Eyebrow, Price ---------- */
+.t-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.eyebrow,
+.t-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #ff6a1a;
+}
+.eyebrow::before,
+.t-eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: #ff6a1a;
+}
+
+.t-price {
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: #f4f1ec;
+}
+.t-price small {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(236, 233, 228, 0.55);
+}
+/* ================= ACCENT FONT + SHIMMER ================= */
+.t-accent {
+  font-family: var(--font-accent), Georgia, serif;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.shimmer-text {
+  background: linear-gradient(
+    100deg,
+    #ff6a1a 0%,
+    #ff6a1a 35%,
+    #ffc59a 50%,
+    #ff6a1a 65%,
+    #ff6a1a 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shimmer 4.5s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 150% 0; }
+  100% { background-position: -150% 0; }
 }

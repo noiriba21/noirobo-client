@@ -1,29 +1,29 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaRobot, FaBars } from "react-icons/fa6";
+import { FaBars } from "react-icons/fa6";
+import Logo from "./Logo";
 
 const links = [
   { href: "/", label: "Home" },
   { href: "/equipment", label: "All Equipment" },
   { href: "/#how-it-works", label: "How It Works" },
-  { href: "/#contact", label: "Contact Us" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
 
   const linkClass = (href) =>
-    `rounded-full px-4 py-2 text-sm font-semibold transition ${
+    `relative py-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] transition ${
       pathname === href
-        ? "bg-primary text-primary-content"
-        : "text-base-content hover:bg-base-200"
+        ? "text-primary after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:bg-primary"
+        : "text-base-content/75 hover:text-primary"
     }`;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-base-300/70 bg-base-100/85 backdrop-blur">
-      <div className="container-x flex h-16 items-center justify-between">
-        {/* Logo */}
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-base-100/70 backdrop-blur-xl">
+      <div className="container-x flex h-20 items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="dropdown lg:hidden">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-sm px-2">
@@ -31,7 +31,7 @@ export default function Navbar() {
             </div>
             <ul
               tabIndex={0}
-              className="menu dropdown-content z-10 mt-3 w-56 rounded-box border border-base-300 bg-base-100 p-2 shadow-lg"
+              className="menu dropdown-content z-10 mt-3 w-56 rounded-box border border-white/10 bg-base-200 p-2 shadow-xl"
             >
               {links.map((l) => (
                 <li key={l.href}>
@@ -41,18 +41,12 @@ export default function Navbar() {
             </ul>
           </div>
 
-          <Link href="/" className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-content">
-              <FaRobot />
-            </span>
-            <span className="text-xl font-extrabold tracking-tight text-primary">
-              Noi<span className="text-secondary">ROBO</span>
-            </span>
+          <Link href="/" aria-label="NoiROBO home">
+            <Logo />
           </Link>
         </div>
 
-        {/* Desktop links */}
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-9 lg:flex">
           {links.map((l) => (
             <Link key={l.href} href={l.href} className={linkClass(l.href)}>
               {l.label}
@@ -60,12 +54,11 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Buttons */}
         <div className="flex items-center gap-2">
-          <Link href="/login" className="btn btn-ghost btn-sm rounded-full">
+          <Link href="/login" className="btn btn-ghost btn-sm">
             Login
           </Link>
-          <Link href="/register" className="btn btn-primary btn-sm rounded-full">
+          <Link href="/register" className="btn btn-primary btn-sm px-5">
             Register
           </Link>
         </div>
