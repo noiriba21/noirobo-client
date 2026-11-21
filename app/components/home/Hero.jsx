@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import GlowRobot from "./GlowRobot";
 
 // আসল ছবি বসাতে চাইলে এখানে ছবির পথ লেখো, যেমন: "/images/hero-car.png"
 // ফাঁকা থাকলে আমার আঁকা car দেখাবে
@@ -176,11 +177,7 @@ export default function Hero() {
         className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-secondary/10 blur-3xl"
       />
 
-      {/* বাম নিচে হালকা robot */}
-      <div className="pointer-events-none absolute bottom-0 left-0 hidden h-[58%] opacity-20 xl:block">
-        <RobotArt />
-      </div>
-
+     
       {/* ===== কনটেন্ট ===== */}
       <div className="container-x relative z-10 grid flex-1 items-center gap-8 py-14 lg:grid-cols-12 lg:py-20">
         {/* বাম: লেখা */}
@@ -259,7 +256,8 @@ export default function Hero() {
         </div>
 
         {/* ডান: car */}
-        <div className="relative lg:col-span-6">
+                <div className="relative pl-[24%] lg:col-span-6">
+          <GlowRobot />
           <motion.div
             initial={{ opacity: 0, x: 80 }}
             animate={{ opacity: 1, x: 0 }}
