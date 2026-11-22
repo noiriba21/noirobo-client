@@ -1,6 +1,7 @@
 "use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { FaBars } from "react-icons/fa6";
 import Logo from "./Logo";
 import { useAuth } from "./AuthProvider";
@@ -14,9 +15,13 @@ const links = [
 ];
 
 export default function Navbar() {
-  const pathname = usePathname();
+  const [pathname, setPathname] = useState("/");
   const router = useRouter();
   const { user, loading, logout } = useAuth();
+
+  useEffect(() => {
+    setPathname(window.location.pathname);
+  }, []);
 
   const onLogout = async () => {
     await logout();
@@ -51,19 +56,26 @@ export default function Navbar() {
             >
               {links.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href}>{l.label}</Link>
+                  <Link href={l.href} onClick={() => setPathname(l.href)}>
+                    {l.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
-          <Link href="/" aria-label="NoiROBO home">
+          <Link href="/" aria-label="NoiROBO home" onClick={() => setPathname("/")}>
             <Logo />
           </Link>
         </div>
 
         <nav className="hidden items-center gap-9 lg:flex">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className={linkClass(l.href)}>
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setPathname(l.href)}
+              className={linkClass(l.href)}
+            >
               {l.label}
             </Link>
           ))}
@@ -72,10 +84,17 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           {loading ? null : user ? (
             <>
-              <Link href="/dashboard" className="btn btn-ghost btn-sm hidden sm:inline-flex">
+              <Link
+                href="/dashboard"
+                onClick={() => setPathname("/dashboard")}
+                className="btn btn-ghost btn-sm hidden sm:inline-flex"
+              >
                 Dashboard
               </Link>
-              <button onClick={onLogout} className="btn btn-outline-light btn-sm hidden md:inline-flex">
+              <button
+                onClick={onLogout}
+                className="btn btn-outline-light btn-sm hidden md:inline-flex"
+              >
                 Logout
               </button>
               <div className="dropdown dropdown-end">
@@ -91,7 +110,9 @@ export default function Navbar() {
                 >
                   <li className="menu-title">{user.name}</li>
                   <li>
-                    <Link href="/dashboard">Dashboard</Link>
+                    <Link href="/dashboard" onClick={() => setPathname("/dashboard")}>
+                      Dashboard
+                    </Link>
                   </li>
                   <li>
                     <button onClick={onLogout}>Logout</button>
@@ -101,10 +122,18 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link href="/login" className="btn btn-ghost btn-sm">
+              <Link
+                href="/login"
+                onClick={() => setPathname("/login")}
+                className="btn btn-ghost btn-sm"
+              >
                 Login
               </Link>
-              <Link href="/register" className="btn btn-primary btn-sm px-5">
+              <Link
+                href="/register"
+                onClick={() => setPathname("/register")}
+                className="btn btn-primary btn-sm px-5"
+              >
                 Register
               </Link>
             </>

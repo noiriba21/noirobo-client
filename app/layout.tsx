@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Inter, Instrument_Serif, Cinzel } from "next/font/google";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -37,7 +38,9 @@ export default function RootLayout({
     >
       <body>
         <AuthProvider>
-          <Navbar />
+          <Suspense fallback={<div className="h-16 w-full" />}>
+            <Navbar />
+          </Suspense>
           <main className="min-h-[70vh]">{children}</main>
           <Footer />
         </AuthProvider>
