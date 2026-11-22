@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, Instrument_Serif, Cinzel } from "next/font/google";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import AuthProvider from "./components/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const instrument = Instrument_Serif({
@@ -16,6 +17,7 @@ const cinzel = Cinzel({
   weight: ["500", "600"],
   variable: "--font-accent",
 });
+
 export const metadata: Metadata = {
   title: "NoiROBO | Robot & Car Tools Rental",
   description:
@@ -31,12 +33,14 @@ export default function RootLayout({
     <html
       lang="en"
       data-theme="noirobo"
-          className={`${inter.variable} ${instrument.variable} ${cinzel.variable}`}
+      className={`${inter.variable} ${instrument.variable} ${cinzel.variable}`}
     >
       <body>
-        <Navbar />
-        <main className="min-h-[70vh]">{children}</main>
-        <Footer />
+        <AuthProvider>
+          <Navbar />
+          <main className="min-h-[70vh]">{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
