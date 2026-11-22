@@ -256,7 +256,7 @@ export default function Hero() {
         </div>
 
         {/* ডান: car */}
-                <div className="relative pl-[24%] lg:col-span-6">
+        <div className="relative pl-[24%] pt-16 lg:col-span-6">
           <GlowRobot />
           <motion.div
             initial={{ opacity: 0, x: 80 }}
@@ -281,9 +281,9 @@ export default function Hero() {
           </motion.div>
 
           {/* HUD card */}
-          <motion.div
+                   <motion.div
             {...fade(1.1)}
-            className="absolute right-0 top-0 hidden w-44 rounded-xl border border-white/10 bg-base-100/70 p-3 backdrop-blur-md sm:block lg:-top-4"
+            className="absolute right-0 top-0 hidden w-44 rounded-xl border border-white/10 bg-base-100/70 p-3 backdrop-blur-md sm:block"
           >
             <p className="t-label text-[0.6rem] text-primary">OBD2 · Live Scan</p>
             <div className="mt-3 flex h-8 items-end gap-1">
